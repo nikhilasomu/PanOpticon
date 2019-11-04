@@ -1,0 +1,9 @@
+node_modules/
+venv/
+__pycache__/
+jmeter.log
+log.txt
+output/
+output.csv
+*.pyc 
+package-lock.json

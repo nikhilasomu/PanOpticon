@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<global>
+<serviceName>appln123</serviceName>
+<runtime>python3.7</runtime>
+<provider>aws</provider>
+<memory>256</memory>
+<memoryStep>256</memoryStep>
+<memoryStart>256</memoryStart>
+<memoryEnd>1024</memoryEnd>
+<timeout>10</timeout>
+<region>us-east-1</region>
+<key></key>
+<secret></secret>
+<application>
+    <function name="1">
+        <filename>func1.py</filename>
+        <handler>func1</handler>
+        <trigger>none</trigger>
+        <triggeredBy>none</triggeredBy>
+    </function>
+    <function name="2">
+        <filename>func2.py</filename>
+        <handler>func2</handler>
+        <trigger type="http">
+            <path>path</path>
+            <method>post</method>
+        </trigger>
+        <triggeredBy>1</triggeredBy>
+    </function>
+    <function name="3">
+        <filename>func3.py</filename>
+        <handler>func3</handler>
+        <trigger type="s3">
+            <bucketName>nbucket123</bucketName>
+        </trigger>
+        <triggeredBy>2</triggeredBy>
+    </function>
+    <function name="4">
+        <filename>func4.py</filename>
+        <handler>func4</handler>
+        <trigger type="dynamodb">
+            <tableName>table123</tableName>
+            <attribute type="S" key="true" >email</attribute>
+        </trigger>
+        <triggeredBy>3</triggeredBy>
+    </function>
+    <function name="5">
+        <filename>func5.py</filename>
+        <handler>func5</handler>
+        <trigger type="sns">
+            <topicName>topic123</topicName>
+        </trigger>
+        <triggeredBy>4</triggeredBy>
+    </function>
+    <function name="6">
+        <filename>func6.py</filename>
+        <handler>func6</handler>
+        <trigger type="sqs">
+            <queueName>queue123</queueName>
+        </trigger>
+        <triggeredBy>5</triggeredBy>
+    </function>
+    <function name="7">
+        <filename>func7.py</filename>
+        <handler>func7</handler>
+        <trigger type="sdk"></trigger>
+        <triggeredBy>6</triggeredBy>
+    </function>
+</application>
+<workload>
+<noOfUsers>10</noOfUsers>
+<loopCount>1</loopCount>
+<rampUpTime>1</rampUpTime>
+</workload>
+</global>

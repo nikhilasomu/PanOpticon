@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<global>
+<serviceName>appln22</serviceName>
+<runtime>python37</runtime>
+<provider>google</provider>
+<memory>256</memory>
+<memoryStep>256</memoryStep>
+<memoryStart>256</memoryStart>
+<memoryEnd>1024</memoryEnd>
+<timeout>30s</timeout>
+<region>us-east1</region>
+<project></project>
+<credentials></credentials>
+<application>
+    <function name="1">
+        <filename>main.py</filename>
+        <handler>func1</handler>
+        <trigger>none</trigger>
+        <triggeredBy>none</triggeredBy>
+    </function>
+    <function name="2">
+        <filename>main.py</filename>
+        <handler>func2</handler>
+        <trigger type="http">
+            <method>post</method>
+        </trigger>
+        <triggeredBy>1</triggeredBy>
+    </function>
+    <function name="3">
+        <filename>main.py</filename>
+        <handler>func3</handler>
+        <trigger type="gcpubsub">
+            <topicName>ntopic1234</topicName>
+        </trigger>
+        <triggeredBy>2</triggeredBy>
+    </function>
+    <function name="4">
+        <filename>main.py</filename>
+        <handler>func4</handler>
+        <trigger type="gcstorage">
+            <bucketName>nbucket1234</bucketName>
+        </trigger>
+        <triggeredBy>3</triggeredBy>
+    </function>
+</application>
+<workload>
+<noOfUsers>10</noOfUsers>
+<loopCount>1</loopCount>
+<rampUpTime>1</rampUpTime>
+</workload>
+</global>
